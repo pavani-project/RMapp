@@ -1,0 +1,21 @@
+.divStyle {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.cardStyle {
+  margin: 10px;
+  flex: 1;
+}
+
+.cardStyle .textStyle {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+.h1Style {
+  background-color: #3c5bb5;
+  text-align: center;
+}
