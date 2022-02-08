@@ -39,6 +39,7 @@ const Login = () => {
   const [role_email, setRoleEmail] = useState("");
   const [role_password, setRolePassword] = useState("");
   const navigate = useNavigate();
+  const [show, setShow] = useState("");
 
   const authenticateUser = () => {
     const data = { role_email: role_email, role_password: role_password };
@@ -53,10 +54,13 @@ const Login = () => {
       .then((response) => response.json())
       .then(
         (data) => {
-          if (data) {
+          if (data.message) {
+            console.log(data.message);
+            setShow("Your password and email is wrong!");
+            // alert("hi");
+          } else {
             console.log(data, "you are logged in!");
             navigate("thelayout/dashboard");
-            // alert("hi");
           }
         },
         (error) => {
@@ -107,6 +111,9 @@ const Login = () => {
                   />
                 </Box>
               </Box>
+              <Typography style={{ color: "red", fontSize: "15px" }}>
+                {show}
+              </Typography>
             </div>
             <FormControlLabel
               control={<Checkbox checked />}
