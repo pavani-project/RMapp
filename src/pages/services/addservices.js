@@ -11,7 +11,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
 
 const style = {
   position: "absolute",
@@ -31,9 +33,65 @@ const AddServices = () => {
   const handleClose = () => setOpen(false);
   const [data, setData] = useState([]);
 
+  const [service_id, setServiceId] = useState("");
+  const [service_name, setServiceName] = useState("");
+
+  const formdata = {
+    service_id: service_id,
+    service_name: service_name,
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:8081/added-services")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if (result) {
+            console.log(result, "Data is there");
+            setData(result);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, []);
+
+  const AddingServices = () => {
+    fetch("http://localhost:8081/adding-services", {
+      method: "POST",
+      body: JSON.stringify(formdata),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json, "Saved Data");
+        fetch("http://localhost:8081/adding-services")
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              if (result) {
+                console.log(result, "Data is there");
+                setData(result);
+              }
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      });
+  };
+
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button
+        variant="contained"
+        onClick={() => {
+          handleOpen();
+        }}
+      >
         Add Service
       </Button>
       <Modal
@@ -51,11 +109,17 @@ const AddServices = () => {
             label="Standard"
             variant="standard"
             fullWidth
+            onChange={(e) => {
+              setServiceName(e.target.value);
+            }}
           />
           <br />
           <Button
             variant="contained"
-            // onClick={handleClose}
+            onClick={() => {
+              AddingServices();
+              handleClose();
+            }}
             style={{ margin: "5px" }}
             size="small"
           >
@@ -78,19 +142,27 @@ const AddServices = () => {
             <TableHead>
               {/*table head**/}
               <TableRow style={{ backgroundColor: "skyblue" }}>
-                <TableCell align="left" component="th" scope="row" width={100}>
+                <TableCell align="left" component="th" scope="row" width={50}>
                   Service No:
                 </TableCell>
                 <TableCell align="left" width={50}>
                   Service Name
+                </TableCell>
+                <TableCell align="left" width={50}>
+                  Edit
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.map((row) => (
                 <TableRow key={row.name}>
-                  <TableCell align="left">{row.application_id}</TableCell>
-                  <TableCell align="left">{row.title}</TableCell>
+                  <TableCell align="left">{row.service_id}</TableCell>
+                  <TableCell align="left">{row.service_name}</TableCell>
+                  <TableCell align="left">
+                    <IconButton color="primary">
+                      <EditIcon />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

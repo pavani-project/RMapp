@@ -13,7 +13,6 @@ import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
-import { Qualified } from ".";
 
 const style = {
   position: "absolute",
@@ -41,20 +40,6 @@ const AllDetails = (props) => {
     scheduled_date: scheduled_date,
   };
 
-  // const QualifiedTable = () => {
-  //   fetch("http://localhost:8081/qualified-table", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       console.log(json, "qualified Data");
-  //     });
-  // };
-
   const QualifiedButton = () => {
     fetch("http://localhost:8081/scheduled-date", {
       method: "PUT",
@@ -66,7 +51,6 @@ const AllDetails = (props) => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json, "Saved Data");
-        // QualifiedTable();
         handleClose();
       });
   };

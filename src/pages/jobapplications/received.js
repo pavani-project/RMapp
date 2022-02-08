@@ -71,7 +71,6 @@ const Recieved = () => {
                   phonenumber={row.phone_number}
                   id={row.application_id}
                   scheduled_date={row.scheduled_date}
-                  setdata={setData}
                 />
               </TableCell>
               {/* <TableCell align="left">qualified </TableCell>/ */}
