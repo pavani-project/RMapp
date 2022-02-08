@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Items } from ".";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,15 +47,19 @@ const StoreRoom = () => {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Products" />
-          <Tab label="Expenses" />
+          <Tab label="Items" />
+          <Tab label="Pending Approvel" />
+          <Tab label="Approved" />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Products!
+        <Items />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Expenses!
+        Pending Approvel
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Approved
       </TabPanel>
     </Box>
   );
