@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Recieved } from "./index";
+import { Recieved, Scheduled } from "./index";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,7 +48,6 @@ const JobApp = () => {
           aria-label="basic tabs example"
         >
           <Tab label="Recieved" />
-          <Tab label="Qualified" />
           <Tab label="Scheduled" />
           <Tab label="Selected" />
         </Tabs>
@@ -57,12 +56,9 @@ const JobApp = () => {
         <Recieved />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Qualified table
+        <Scheduled />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Scheduled table
-      </TabPanel>
-      <TabPanel value={value} index={3}>
         Selected table
       </TabPanel>
     </Box>

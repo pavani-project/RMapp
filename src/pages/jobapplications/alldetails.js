@@ -13,6 +13,7 @@ import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
+import { Qualified } from ".";
 
 const style = {
   position: "absolute",
@@ -31,7 +32,7 @@ const AllDetails = (props) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [scheduled_date, setScheduledDate] = useState("");
+  const [scheduled_date, setScheduledDate] = useState(props.scheduled_date);
   // eslint-disable-next-line
   const [application_id, setApplicationId] = useState(props.id);
 
@@ -40,9 +41,23 @@ const AllDetails = (props) => {
     scheduled_date: scheduled_date,
   };
 
+  // const QualifiedTable = () => {
+  //   fetch("http://localhost:8081/qualified-table", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       console.log(json, "qualified Data");
+  //     });
+  // };
+
   const QualifiedButton = () => {
     fetch("http://localhost:8081/scheduled-date", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -51,19 +66,8 @@ const AllDetails = (props) => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json, "Saved Data");
+        // QualifiedTable();
         handleClose();
-        fetch("http://localhost:8081/scheduled-date")
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              if (result) {
-                console.log(result, "Data is there");
-              }
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
       });
   };
 
@@ -100,7 +104,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="ID"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.id}
@@ -108,7 +112,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="Title"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.title}
@@ -116,7 +120,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="First Name"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.firstname}
@@ -124,7 +128,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="Last Name"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.lastname}
@@ -132,7 +136,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="Email"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.email}
@@ -140,7 +144,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="Phone Number"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.phonenumber}
@@ -166,7 +170,7 @@ const AllDetails = (props) => {
               <TextField
                 id="filled-read-only-input"
                 label="Skills"
-                type="search"
+                type="text"
                 variant="filled"
                 size="small"
                 defaultValue={props.skills}
@@ -182,7 +186,7 @@ const AllDetails = (props) => {
               <Stack direction="row" spacing={2}>
                 <TextField
                   id="outlined-basic"
-                  label="Schedule Date & Time"
+                  label="Schedule Date and Time"
                   variant="outlined"
                   size="small"
                   placeholder="DD/MM/YYYY 24h"
@@ -192,7 +196,7 @@ const AllDetails = (props) => {
                   variant="text"
                   endIcon={<CheckCircleIcon />}
                   style={{ color: "#07ab3b" }}
-                  onClick={() => QualifiedButton()}
+                  onClick={() => QualifiedButton(props.application_id)}
                 >
                   Qualified
                 </Button>

@@ -1,3 +1,4 @@
 import Services from "./services";
+import AddServices from "./addservices";
 
-export { Services };
+export { Services, AddServices };

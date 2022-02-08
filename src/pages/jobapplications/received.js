@@ -35,7 +35,7 @@ const Recieved = () => {
           {/*table head**/}
           <TableRow style={{ backgroundColor: "skyblue" }}>
             <TableCell align="left" component="th" scope="row" width={100}>
-              Id
+              Recieved No:
             </TableCell>
             <TableCell align="left" width={50}>
               Title
@@ -49,9 +49,6 @@ const Recieved = () => {
             <TableCell align="left" width={100}>
               Details
             </TableCell>
-            {/* <TableCell align="left" width={100}>
-              Qualified or Not
-            </TableCell> */}
             <TableCell align="left" width={100}>
               Scheduled Date
             </TableCell>
@@ -74,6 +71,7 @@ const Recieved = () => {
                   phonenumber={row.phone_number}
                   id={row.application_id}
                   scheduled_date={row.scheduled_date}
+                  setdata={setData}
                 />
               </TableCell>
               {/* <TableCell align="left">qualified </TableCell>/ */}
