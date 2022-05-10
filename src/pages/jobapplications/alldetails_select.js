@@ -26,7 +26,7 @@ const style = {
   p: 4,
 };
 
-const AllDetails = (props) => {
+const AllDetailsSelect = (props) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -44,9 +44,9 @@ const AllDetails = (props) => {
     qualification: qualification,
   };
 
-  const QualifiedButton = () => {
-    fetch("http://localhost:8081/scheduled-date", {
-      method: "PUT",
+  const SelectedButton = () => {
+    fetch("http://localhost:8081/selected", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,13 +54,13 @@ const AllDetails = (props) => {
     })
       .then((response) => response.json())
       .then((json) => {
-        handleClose(true);
+        handleClose();
       });
   };
 
-  const NotQualified = () => {
-    fetch("http://localhost:8081/not-qualified-table", {
-      method: "PUT",
+  const NotSelected = () => {
+    fetch("http://localhost:8081/not-selected-table", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -68,7 +68,7 @@ const AllDetails = (props) => {
     })
       .then((response) => response.json())
       .then((json) => {
-        handleClose(true);
+        handleClose();
       });
   };
 
@@ -179,42 +179,25 @@ const AllDetails = (props) => {
 
             {/* Qualified or Not **/}
             <Box>
-              <h4>Qualified or Not</h4>
+              <h4>Select or Not</h4>
               <br />
               <Stack direction="row" spacing={2}>
-                <input
-                  id="outlined-basic"
-                  type="date"
-                  placeholder="yyyy-mm-dd"
-                  required
-                  min="2022-02-20"
-                  max="2032-02-20"
-                  name="date"
-                  onChange={(e) => setScheduledDate(e.target.value)}
-                />{" "}
-                <input
-                  id="outlined-basic"
-                  type="time"
-                  name="time"
-                  required
-                  onChange={(e) => setScheduledTime(e.target.value)}
-                />
                 <div>
                   <Button
                     variant="text"
                     endIcon={<CheckCircleIcon />}
                     style={{ color: "#07ab3b" }}
-                    onClick={() => QualifiedButton(props.application_id)}
+                    onClick={() => SelectedButton(props.application_id)}
                   >
-                    Qualified
+                    Selected
                   </Button>
                   <Button
                     variant="text"
                     endIcon={<CancelIcon />}
                     style={{ color: "#cf0430" }}
-                    onClick={() => NotQualified(props.application_id)}
+                    onClick={() => NotSelected()}
                   >
-                    Not Qualified
+                    Not Selected
                   </Button>
                 </div>
               </Stack>
@@ -225,4 +208,4 @@ const AllDetails = (props) => {
     </div>
   );
 };
-export default AllDetails;
+export default AllDetailsSelect;

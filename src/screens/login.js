@@ -55,11 +55,8 @@ const Login = () => {
       .then(
         (data) => {
           if (data.message) {
-            console.log(data.message);
-            setShow("Your password and email is wrong!");
-            // alert("hi");
+            setShow(data.message);
           } else {
-            console.log(data, "you are logged in!");
             navigate("thelayout/dashboard");
           }
         },

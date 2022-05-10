@@ -36,7 +36,7 @@ const Dashboard = () => {
         <Card sx={{ width: 300, height: 200 }} className="cardStyle">
           <CardContent>
             <Typography className="textStyle">
-              Customer Appointments (Monthly / Weekly)
+              Customer Appointments Reports
             </Typography>
           </CardContent>
         </Card>

@@ -52,6 +52,12 @@ const Recieved = () => {
             <TableCell align="left" width={100}>
               Scheduled Date
             </TableCell>
+            <TableCell align="left" width={100}>
+              Scheduled Time
+            </TableCell>
+            <TableCell align="left" width={100}>
+              Qualification
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -71,10 +77,13 @@ const Recieved = () => {
                   phonenumber={row.phone_number}
                   id={row.application_id}
                   scheduled_date={row.scheduled_date}
+                  cv={row.cv}
                 />
               </TableCell>
               {/* <TableCell align="left">qualified </TableCell>/ */}
               <TableCell align="left">{row.scheduled_date} </TableCell>
+              <TableCell align="left">{row.scheduled_time} </TableCell>
+              <TableCell align="left">{row.qualification} </TableCell>
             </TableRow>
           ))}
         </TableBody>

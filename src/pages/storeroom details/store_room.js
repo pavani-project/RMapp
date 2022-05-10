@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Items } from ".";
+import { Items, Quotations } from ".";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,17 +49,21 @@ const StoreRoom = () => {
         >
           <Tab label="Items" />
           <Tab label="Pending Approvel" />
-          <Tab label="Approved" />
+          <Tab label="Approved Quotation" />
+          <Tab label="Purchasing Orders" />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <Items />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Pending Approvel
+        <Quotations />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Approved
+        Approved Quotations
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Purchasing Orders
       </TabPanel>
     </Box>
   );

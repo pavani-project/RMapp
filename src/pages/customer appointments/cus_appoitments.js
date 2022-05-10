@@ -5,6 +5,8 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
+import { RecievedAppoitments } from "./index";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -53,7 +55,7 @@ const CustomerAppoitments = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Recieved Appoi
+        <RecievedAppoitments />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Completed Appoi

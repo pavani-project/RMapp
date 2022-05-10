@@ -21,6 +21,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import EngineeringIcon from "@mui/icons-material/Engineering";
+import PublicIcon from "@mui/icons-material/Public";
 
 const drawerWidth = 240;
 
@@ -88,6 +89,16 @@ const TheLayout = () => {
             Services
           </Link>
         </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            {" "}
+            <PublicIcon />{" "}
+          </ListItemIcon>
+          <Link to="/thelayout/web-setting" className="linkStyle">
+            Web Settings
+          </Link>
+        </ListItem>
+        <Divider />
       </List>
     </div>
   );

@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { AddStaff } from "./";
+import { InputVacancies } from ".";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -32,7 +32,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const EmpDetails = () => {
+const WebSetting = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -40,28 +40,22 @@ const EmpDetails = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Add Staff" />
-          <Tab label="Employees with Performance" />
-          <Tab label="Add Employees" />
-        </Tabs>
+    <div>
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab label="Insert Vacancies" />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <InputVacancies />
+        </TabPanel>
       </Box>
-      <TabPanel value={value} index={0}>
-        <AddStaff />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Employees with Performance
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Add Employees
-      </TabPanel>
-    </Box>
+    </div>
   );
 };
-export default EmpDetails;
+export default WebSetting;

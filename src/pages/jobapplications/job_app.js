@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Recieved, Scheduled } from "./index";
+import { Recieved, Scheduled, Selected } from "./index";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,7 +59,7 @@ const JobApp = () => {
         <Scheduled />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Selected table
+        <Selected />
       </TabPanel>
     </Box>
   );
